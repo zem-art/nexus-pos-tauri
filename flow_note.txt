@@ -1,0 +1,24 @@
+Role,Fitur Utama,Deskripsi
+Kasir,Point of Sale (POS) : "Scan barang, input pesanan, cetak struk, buka/tutup shift."
+,Order History,Melihat transaksi terakhir (hanya untuk hari itu).
+
+Staff Gudang : Inventory Management,"Update stok barang, input barang masuk dari supplier."
+,Stock Alert,Daftar barang yang stoknya di bawah batas minimum.
+
+Manager / Admin,Analytics Dashboard,"Grafik penjualan, laba rugi, dan produk terlaris."
+,User Management,Menambah/menghapus akun kasir atau staff.
+,Price Management,Mengubah harga jual atau memberi diskon massal.
+
+1. Breakdown Fitur Kasir (Expanded)
+Berdasarkan list kamu, berikut adalah detail fungsi yang biasanya ada di POS modern:
+
+>.Penjualan (POS): Layar utama transaksi, scan barcode, dan pembayaran.
+>.Pembelian: Mencatat barang masuk dari supplier (agar stok bertambah tanpa lewat admin pusat).
+>.Stok: Cek sisa stok barang secara real-time tanpa harus buka modul admin.
+>.Member: Pendaftaran pelanggan baru, cek poin, atau diskon khusus member.
+>.Produk: Melihat daftar harga dan katalog (untuk menjawab pertanyaan customer).
+>.Top Up: Jika toko kamu melayani top up e-wallet (Dana, OVO, dll) atau saldo member internal.
+>.Setting: Pengaturan printer thermal, ganti password, atau koneksi ke scanner.
+    Fitur Tambahan Wajib:
+        >.Buka/Tutup Shift: Input modal awal (kas kecil) dan laporan uang fisik saat selesai kerja.
+        >.Riwayat (Order History): Mencari transaksi yang baru saja terjadi untuk cetak ulang struk atau retur.
