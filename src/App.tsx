@@ -1,180 +1,112 @@
-import React, { useState } from 'react';
-
-import { 
-  HiOutlineViewGrid, 
-  HiOutlineShoppingCart, 
-  HiOutlineCube, 
-  HiOutlineUsers, 
-  HiOutlineCog, 
+import React from 'react';
+import {
+  HiOutlineShoppingCart,
+  HiOutlineDownload,
+  HiOutlineClipboardList,
+  HiOutlineUserGroup,
+  HiOutlineCollection,
+  HiOutlineArchive,
+  HiOutlineLightningBolt,
+  HiOutlineCog,
   HiOutlineLogout,
-  HiOutlineSearch
+  HiOutlineKey,
+  HiOutlineTicket, // Menu Tambahan: Promo/Voucher
+  HiOutlineChatAlt2 // Menu Tambahan: Helpdesk/Bantuan
 } from "react-icons/hi";
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState('Dashboard');
+const name_apps = "nexus"
+
+export default function DashboardKasir() {
+  const menus = [
+    { id: 'pos', title: 'PENJUALAN', desc: 'Transaksi Baru', icon: <HiOutlineShoppingCart />, color: 'bg-blue-600' },
+    { id: 'pembelian', title: 'PEMBELIAN', desc: 'Barang Masuk', icon: <HiOutlineDownload />, color: 'bg-emerald-600' },
+    { id: 'stok', title: 'CEK STOK', desc: 'Sisa Inventaris', icon: <HiOutlineArchive />, color: 'bg-purple-600' },
+    { id: 'member', title: 'MEMBER', desc: 'Data Pelanggan', icon: <HiOutlineUserGroup />, color: 'bg-pink-600' },
+    { id: 'produk', title: 'KATALOG', desc: 'Daftar Harga', icon: <HiOutlineCollection />, color: 'bg-orange-500' },
+    { id: 'topup', title: 'TOP UP', desc: 'Saldo & E-Wallet', icon: <HiOutlineLightningBolt />, color: 'bg-amber-500' },
+    { id: 'promo', title: 'PROMO', desc: 'Voucher & Diskon', icon: <HiOutlineTicket />, color: 'bg-rose-500' },
+    { id: 'riwayat', title: 'RIWAYAT', desc: 'Cetak Struk', icon: <HiOutlineClipboardList />, color: 'bg-slate-600' },
+    { id: 'shift', title: 'SHIFT', desc: 'Buka / Tutup', icon: <HiOutlineKey />, color: 'bg-indigo-600' },
+    { id: 'setting', title: 'SETTING', desc: 'Printer & Perangkat', icon: <HiOutlineCog />, color: 'bg-slate-800' },
+    { id: 'help', title: 'BANTUAN', desc: 'Panduan Sistem', icon: <HiOutlineChatAlt2 />, color: 'bg-cyan-700' },
+  ];
+
+  // const menus = [
+  //   { id: 'pos', title: 'PENJUALAN', desc: 'Scan & Transaksi Baru', icon: <HiOutlineShoppingCart />, color: 'bg-blue-600' },
+  //   { id: 'pembelian', title: 'PEMBELIAN', desc: 'Input Barang Masuk', icon: <HiOutlineDownload />, color: 'bg-emerald-600' },
+  //   { id: 'stok', title: 'CEK STOK', desc: 'Lihat Sisa Inventaris', icon: <HiOutlineArchive />, color: 'bg-purple-600' },
+  //   { id: 'member', title: 'MEMBER', desc: 'Data & Poin Pelanggan', icon: <HiOutlineUserGroup />, color: 'bg-pink-600' },
+  //   { id: 'produk', title: 'KATALOG', desc: 'Daftar Harga Produk', icon: <HiOutlineCollection />, color: 'bg-orange-500' },
+  //   { id: 'topup', title: 'TOP UP', desc: 'E-Wallet & Saldo', icon: <HiOutlineLightningBolt />, color: 'bg-amber-500' },
+  //   { id: 'riwayat', title: 'RIWAYAT', desc: 'Cetak Ulang & Retur', icon: <HiOutlineClipboardList />, color: 'bg-slate-600' },
+  //   { id: 'shift', title: 'SHIFT', desc: 'Buka / Tutup Kasir', icon: <HiOutlineKey />, color: 'bg-rose-600' },
+  //   { id: 'setting', title: 'SETTING', desc: 'Printer & Perangkat', icon: <HiOutlineCog />, color: 'bg-slate-800' },
+  // ];
 
   return (
-    <div className="flex h-screen bg-gray-50 text-gray-800 font-sans">
-      {/* SIDEBAR */}
-      <nav className="w-64 bg-slate-900 text-white flex flex-col shadow-xl">
-        <div className="p-8">
-          <h1 className="text-2xl font-black tracking-widest text-blue-400 uppercase">nexus</h1>
-          <p className="text-[10px] text-slate-400 tracking-widest uppercase">Point of Sale System</p>
+    <div className="min-h-screen w-full bg-[#0f172a] flex flex-col items-center p-6 md:p-10 font-sans overflow-x-hidden">
+
+      {/* Header Kasir */}
+      <div className="w-full max-w-[95%] flex flex-col md:flex-row justify-between items-center mb-10 z-10 gap-6">
+        <div>
+          <h1 className="text-3xl font-black text-white tracking-tighter uppercase">
+            {name_apps} <span className="text-blue-500">POS</span>
+          </h1>
+          <p className="text-slate-500 text-xs font-bold tracking-[0.2em]">STATION: KASIR-01</p>
         </div>
 
-        <div className="flex-1 px-4 space-y-2">
-          <NavItem 
-            icon={<HiOutlineViewGrid size={22}/>} 
-            label="Dashboard" 
-            active={activeTab === 'Dashboard'} 
-            onClick={() => setActiveTab('Dashboard')} 
-          />
-          <NavItem 
-            icon={<HiOutlineShoppingCart size={22}/>} 
-            label="Kasir (POS)" 
-            active={activeTab === 'POS'} 
-            onClick={() => setActiveTab('POS')} 
-          />
-          <NavItem 
-            icon={<HiOutlineCube size={22}/>} 
-            label="Gudang" 
-            active={activeTab === 'Gudang'} 
-            onClick={() => setActiveTab('Gudang')} 
-          />
-          <NavItem 
-            icon={<HiOutlineUsers size={22}/>} 
-            label="Staf / Pegawai" 
-            active={activeTab === 'Staf'} 
-            onClick={() => setActiveTab('Staf')} 
-          />
-        </div>
-
-        <div className="p-4 border-t border-slate-800">
-          <NavItem 
-            icon={<HiOutlineCog size={22}/>} 
-            label="Pengaturan" 
-            active={activeTab === 'Settings'} 
-            onClick={() => setActiveTab('Settings')} 
-          />
-          <NavItem 
-            icon={<HiOutlineLogout size={22}/>} 
-            label="Keluar" 
-            danger 
-          />
-        </div>
-      </nav>
-
-      {/* MAIN CONTENT AREA */}
-      <main className="flex-1 flex flex-col overflow-hidden">
-        {/* TOPBAR */}
-        <header className="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-10 shadow-sm">
-          <div>
-             <h2 className="text-2xl font-bold text-slate-700">{activeTab}</h2>
-             <p className="text-sm text-gray-400">Selasa, 20 Januari 2026</p>
+        <div className="flex items-center gap-6">
+          <div className="text-right border-r border-slate-700 pr-6">
+            <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest">Waktu Shift</p>
+            <p className="text-white font-mono">08:45:12</p>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <p className="text-sm font-bold">Admin Utama</p>
-              <span className="text-[10px] bg-green-100 text-green-600 px-2 py-1 rounded-full font-extrabold uppercase">Online</span>
+          <div className="bg-slate-800/80 p-3 pr-6 rounded-2xl border border-slate-700 flex items-center gap-4">
+            <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white shadow-lg">
+              <HiOutlineUserGroup size={20} />
             </div>
-            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg shadow-blue-200">
-              AD
+            <div>
+              <p className="text-[10px] text-slate-500 uppercase font-bold">Operator</p>
+              <p className="text-white text-sm font-bold">Budi Santoso</p>
             </div>
           </div>
-        </header>
+        </div>
+      </div>
 
-        {/* DYNAMIC CONTENT */}
-        <section className="p-10 overflow-y-auto bg-[#f8f9fc] h-full">
-          {activeTab === 'POS' ? (
-            <div className="grid grid-cols-12 gap-8">
-              
-              {/* Kolom Produk (Kiri) */}
-              <div className="col-span-8 space-y-6">
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
-                    <HiOutlineSearch size={20} />
-                  </span>
-                  <input 
-                    type="text" 
-                    placeholder="Scan barcode atau cari nama produk..." 
-                    className="w-full pl-12 pr-4 py-4 rounded-2xl border-none shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-lg"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-3 gap-6">
-                  {/* Dummy Products */}
-                  {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div key={i} className="bg-white p-5 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer border border-gray-100 group">
-                      <div className="w-full h-32 bg-slate-100 rounded-2xl mb-4 group-hover:bg-blue-50 transition-colors flex items-center justify-center text-slate-300">
-                         <HiOutlineCube size={48} />
-                      </div>
-                      <p className="font-bold text-slate-700">Espresso Roast {i}</p>
-                      <p className="text-sm text-gray-400 mb-2">Category: Coffee</p>
-                      <p className="text-blue-600 font-black text-lg">Rp 35.000</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+      {/* GRID SYSTEM: 5 Kolom pada layar besar (2xl) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 w-full max-w-[95%] z-10">
+        {menus.map((menu) => (
+          <button
+            key={menu.id}
+            className={`${menu.color} group relative overflow-hidden cursor-pointer rounded-[2rem] p-6 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:brightness-110 active:scale-95 flex flex-col items-center justify-center min-h-[220px]`}
+          >
+            {/* Glossy & Pattern Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-30"></div>
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
 
-              {/* Kolom Keranjang (Kanan) */}
-              <div className="col-span-4 bg-white rounded-[2rem] shadow-xl p-8 border border-gray-50 flex flex-col h-[calc(100vh-180px)]">
-                <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-black text-slate-800">Pesanan</h3>
-                    <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-xs font-bold">3 Items</span>
-                </div>
-
-                <div className="flex-1 overflow-y-auto space-y-4 mb-6 pr-2">
-                   {/* Contoh item di keranjang */}
-                   <div className="flex justify-between items-center bg-slate-50 p-3 rounded-xl text-sm font-semibold">
-                      <span>Kopi Kenangan x1</span>
-                      <span>Rp 25.000</span>
-                   </div>
-                </div>
-
-                <div className="space-y-3 pt-6 border-t border-dashed border-gray-200">
-                   <div className="flex justify-between text-gray-500"><p>Subtotal</p><p>Rp 25.000</p></div>
-                   <div className="flex justify-between text-gray-500"><p>Pajak (10%)</p><p>Rp 2.500</p></div>
-                   <div className="flex justify-between text-2xl font-black text-slate-800 mt-2">
-                      <p>Total</p>
-                      <p className="text-blue-600">Rp 27.500</p>
-                   </div>
-                </div>
-
-                <button className="w-full bg-blue-600 text-white font-black py-5 rounded-2xl mt-8 hover:bg-blue-700 shadow-lg shadow-blue-200 active:scale-[0.98] transition-all tracking-widest">
-                  PROSES BAYAR
-                </button>
-              </div>
+            {/* Icon */}
+            <div className="mb-5 p-4 bg-black/20 rounded-2xl group-hover:bg-white group-hover:text-slate-900 transition-all duration-300 text-5xl text-white">
+              {menu.icon}
             </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-               <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-300 mb-4">
-                  <HiOutlineCube size={40} />
-               </div>
-               <h3 className="text-xl font-bold text-slate-400 italic">Halaman {activeTab} dalam pengembangan</h3>
+
+            <div className="text-center z-10">
+              <h3 className="text-lg font-black tracking-wide text-white mb-1 uppercase italic">{menu.title}</h3>
+              <p className="text-[11px] text-white/60 font-bold uppercase tracking-tighter">{menu.desc}</p>
             </div>
-          )}
-        </section>
-      </main>
+          </button>
+        ))}
+      </div>
+
+      {/* Logout Button */}
+      <div className="mt-auto pt-10 z-10 flex flex-col items-center gap-4">
+        <button className="flex items-center gap-2 text-slate-500 hover:text-red-400 transition-all font-black uppercase tracking-[0.3em] text-[10px] py-3 px-10 border border-slate-800 rounded-full hover:border-red-400/50 bg-slate-900/80 backdrop-blur-md">
+          <HiOutlineLogout size={16} />
+          Selesaikan Shift
+        </button>
+        <p className="text-slate-700 text-[10px] font-bold uppercase">{name_apps} POS ENGINE V1.0.2</p>
+      </div>
+
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] -z-0"></div>
     </div>
-  );
-}
-
-// Sub-komponen Navigasi
-function NavItem({ icon, label, active, onClick, danger }:any) {
-  return (
-    <button 
-      onClick={onClick}
-      className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-200 ${
-        active 
-          ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/50 font-bold' 
-          : danger 
-            ? 'text-red-400 hover:bg-red-500/10' 
-            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-      }`}
-    >
-      {icon}
-      <span className="text-sm tracking-wide">{label}</span>
-    </button>
   );
 }
