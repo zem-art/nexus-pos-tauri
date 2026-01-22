@@ -27,7 +27,6 @@ import Logout from './common/components/button/logout';
 //   { id: 'setting', title: 'SETTING', desc: 'Printer & Perangkat', icon: <HiOutlineCog />, color: 'bg-slate-800' },
 // ];
 
-
 export default function DashboardKasir() {
   const menus = [
     { id: 'pos', title: 'PENJUALAN', desc: 'Transaksi Baru', icon: <HiOutlineShoppingCart />, color: 'bg-blue-600' },
