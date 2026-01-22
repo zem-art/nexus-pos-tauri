@@ -11,25 +11,15 @@ import {
   HiOutlineKey,
   HiOutlineTicket, // Menu Tambahan: Promo/Voucher
   HiOutlineChatAlt2, // Menu Tambahan: Helpdesk/Bantuan
-  HiOutlineSun,
-  HiOutlineMoon
 } from "react-icons/hi";
 import Logout from '../common/components/button/logout';
 import Header from '../common/components/header';
 import { useNavigate } from 'react-router-dom';
+import { useThemeStore } from '../store/themeStore';
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const [isDark, setIsDark] = useState(true); // Default gelap sesuai desainmu
-
-  // Toggle Dark Mode
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
+  const { isDark } = useThemeStore();
 
   const menus = [
     { id: 'pos', title: 'PENJUALAN', desc: 'Transaksi Baru', icon: <HiOutlineShoppingCart />, color: 'bg-blue-600' },
@@ -47,35 +37,40 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="min-h-screen w-full bg-[#0f172a] flex flex-col items-center p-6 md:p-10 font-sans overflow-x-hidden">
-        {/* Tombol Toggle Tema */}
-        <button
-          onClick={() => setIsDark(!isDark)}
-          className="fixed top-10 right-10 z-50 p-3 rounded-full bg-slate-800 text-yellow-400 hover:scale-110 transition-all shadow-xl border border-slate-700"
-        >
-          {isDark ? <HiOutlineSun size={24} /> : <HiOutlineMoon size={24} className="text-white" />}
-        </button>
-
+      <div className={`
+          min-h-screen w-full transition-colors duration-500 flex flex-col items-center p-6 md:p-10 font-sans overflow-x-hidden relative
+          ${isDark ? 'bg-[#0f172a]' : 'bg-slate-50'}
+        `}>
         <Header />
 
+        {/* Grid Menu */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 w-full max-w-[95%] z-10">
           {menus.map((menu) => (
             <button
               key={menu.id}
-              className={`${menu.color} group relative overflow-hidden cursor-pointer rounded-[2rem] p-6 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:brightness-110 active:scale-95 flex flex-col items-center justify-center min-h-[220px]`}
+              className={`
+              ${menu.color} group relative overflow-hidden cursor-pointer rounded-[2rem] p-6 
+              transition-all duration-300 hover:-translate-y-2 hover:brightness-110 active:scale-95 
+              flex flex-col items-center justify-center min-h-[220px]
+              shadow-xl ${isDark ? 'shadow-black/20' : 'shadow-slate-300'}
+            `}
             >
               {/* Glossy & Pattern Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-30"></div>
               <div className="absolute -right-4 -top-4 w-24 h-24 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
 
-              {/* Icon */}
+              {/* Icon Container */}
               <div className="mb-5 p-4 bg-black/20 rounded-2xl group-hover:bg-white group-hover:text-slate-900 transition-all duration-300 text-5xl text-white">
                 {menu.icon}
               </div>
 
               <div className="text-center z-10">
-                <h3 className="text-lg font-black tracking-wide text-white mb-1 uppercase italic">{menu.title}</h3>
-                <p className="text-[11px] text-white/60 font-bold uppercase tracking-tighter">{menu.desc}</p>
+                <h3 className="text-lg font-black tracking-wide text-white mb-1 uppercase italic">
+                  {menu.title}
+                </h3>
+                <p className="text-[11px] text-white/70 font-bold uppercase tracking-tighter">
+                  {menu.desc}
+                </p>
               </div>
             </button>
           ))}
@@ -83,10 +78,11 @@ export default function Dashboard() {
 
         <Logout />
 
-        {/* Background Decor (Hanya muncul di dark mode biar cantik) */}
-        {isDark && (
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-blue-600/5 blur-[120px] -z-0"></div>
-        )}
+        {/* Background Decor: Kita sesuaikan warnanya agar masuk di kedua tema */}
+        <div className={`
+        absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] blur-[120px] -z-0 pointer-events-none transition-opacity duration-1000
+        ${isDark ? 'bg-blue-600/5 opacity-100' : 'bg-blue-400/10 opacity-50'}
+      `}></div>
       </div>
     </>
   );
