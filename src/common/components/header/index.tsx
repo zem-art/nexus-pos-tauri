@@ -1,13 +1,16 @@
 import React from 'react';
-
-import { HiOutlineMoon, HiOutlineSun, HiOutlineUserGroup } from 'react-icons/hi';
 import { useDateTime } from '../../hooks/useDateTime';
-import { name_apps } from '../../const';
+import { module_not_release, name_apps } from '../../const';
 import { useThemeStore } from '../../../store/themeStore';
+import { IconRenderer } from '../icons/IconRenderer';
 
 export default function Header() {
   const { formattedTime } = useDateTime();
   const { isDark, toggleTheme } = useThemeStore();
+
+  const handleProfile = () => {
+    alert(module_not_release)
+  }
 
   return (
     <>
@@ -63,20 +66,46 @@ export default function Header() {
             {/* Toggle Theme (Inline version) */}
             <button
               onClick={() => toggleTheme()}
-              className="cursor-pointer p-3 rounded-xl bg-slate-800/50 border border-slate-700 text-yellow-400 hover:bg-slate-700 transition-all shadow-lg"
+              className={`cursor-pointer p-3 rounded-xl transition-all shadow-lg border
+                  ${isDark
+                  ? 'bg-slate-800/50 border-slate-700 text-yellow-400 hover:bg-slate-700 shadow-black/20'
+                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-slate-200'}
+                `}
               title="Ganti Tema"
             >
-              {isDark ? <HiOutlineSun size={20} /> : <HiOutlineMoon size={20} className="text-white" />}
+              {isDark ? (
+                <IconRenderer lib='hi' name='HiOutlineSun' size={20} />
+              ) : (
+                <IconRenderer lib='hi' name='HiOutlineMoon' size={20} className="text-blue-600" />
+              )}
             </button>
 
             {/* User Profile Button */}
-            <button className="group bg-slate-800/80 p-2 pr-6 rounded-2xl border border-slate-700 flex items-center gap-4 shadow-xl backdrop-blur-sm hover:border-blue-500/50 transition-all">
+            <button
+              onClick={() => handleProfile()}
+              className={`
+                cursor-pointer group p-2 pr-6 rounded-2xl flex items-center gap-4 shadow-xl backdrop-blur-sm transition-all border
+                ${isDark
+                  ? 'border-slate-700 bg-slate-800/80 hover:border-blue-500/50 shadow-black/20'
+                  : 'border-slate-200 bg-white hover:border-blue-400 shadow-slate-200'}
+              `}>
               <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
-                <HiOutlineUserGroup size={20} />
+                <IconRenderer lib='hi' name='HiOutlineUserGroup' size={20} />
               </div>
+
               <div className="text-left xs:block">
-                <p className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Operator</p>
-                <p className="text-white text-sm font-bold group-hover:text-blue-400 transition-colors">Budi Santoso</p>
+                <p className={`
+      text-[9px] uppercase font-black tracking-widest transition-colors
+      ${isDark ? 'text-slate-400' : 'text-slate-500'}
+    `}>
+                  Cashier
+                </p>
+                <p className={`
+      text-sm font-bold transition-colors group-hover:text-blue-500
+      ${isDark ? 'text-white' : 'text-slate-800'}
+    `}>
+                  Budi Santoso
+                </p>
               </div>
             </button>
           </div>
