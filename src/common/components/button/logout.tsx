@@ -1,7 +1,7 @@
 import React from 'react';
-import { HiOutlineLogout } from 'react-icons/hi';
 import { name_apps, version_apps } from '../../const';
 import { useThemeStore } from '../../../store/themeStore';
+import { IconRenderer } from '../icons/IconRenderer';
 
 export default function Logout() {
     const { isDark, } = useThemeStore();
@@ -16,7 +16,7 @@ export default function Logout() {
                         ? 'text-slate-500 hover:text-red-400 border-slate-800 bg-slate-900/80 hover:border-red-400/50 shadow-lg shadow-black/20'
                         : 'text-slate-400 hover:text-red-500 border-slate-200 bg-white/80 hover:border-red-500/50 shadow-md shadow-slate-200'}
                 `}>
-                    <HiOutlineLogout size={16} />
+                    <IconRenderer lib='hi' name='HiOutlineLogout' size={16} />
                     Selesaikan Shift
                 </button>
 
