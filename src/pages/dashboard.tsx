@@ -1,39 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import {
-  HiOutlineShoppingCart,
-  HiOutlineDownload,
-  HiOutlineClipboardList,
-  HiOutlineUserGroup,
-  HiOutlineCollection,
-  HiOutlineArchive,
-  HiOutlineLightningBolt,
-  HiOutlineCog,
-  HiOutlineKey,
-  HiOutlineTicket, // Menu Tambahan: Promo/Voucher
-  HiOutlineChatAlt2, // Menu Tambahan: Helpdesk/Bantuan
-} from "react-icons/hi";
 import Logout from '../common/components/button/logout';
 import Header from '../common/components/header';
 import { useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../store/themeStore';
+import { IconRenderer } from '../common/components/icons/IconRenderer';
+import { menus_cashier } from '../common/const';
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const { isDark } = useThemeStore();
-
-  const menus = [
-    { id: 'pos', title: 'PENJUALAN', desc: 'Transaksi Baru', icon: <HiOutlineShoppingCart />, color: 'bg-blue-600' },
-    { id: 'pembelian', title: 'PEMBELIAN', desc: 'Barang Masuk', icon: <HiOutlineDownload />, color: 'bg-emerald-600' },
-    { id: 'stok', title: 'CEK STOK', desc: 'Sisa Inventaris', icon: <HiOutlineArchive />, color: 'bg-purple-600' },
-    { id: 'member', title: 'MEMBER', desc: 'Data Pelanggan', icon: <HiOutlineUserGroup />, color: 'bg-pink-600' },
-    { id: 'produk', title: 'KATALOG', desc: 'Daftar Harga', icon: <HiOutlineCollection />, color: 'bg-orange-500' },
-    { id: 'topup', title: 'TOP UP', desc: 'Saldo & E-Wallet', icon: <HiOutlineLightningBolt />, color: 'bg-amber-500' },
-    { id: 'promo', title: 'PROMO', desc: 'Voucher & Diskon', icon: <HiOutlineTicket />, color: 'bg-rose-500' },
-    { id: 'riwayat', title: 'RIWAYAT', desc: 'Cetak Struk', icon: <HiOutlineClipboardList />, color: 'bg-slate-600' },
-    { id: 'shift', title: 'SHIFT', desc: 'Buka / Tutup', icon: <HiOutlineKey />, color: 'bg-indigo-600' },
-    { id: 'setting', title: 'SETTING', desc: 'Printer Perangkat & Bantuan Sistem', icon: <HiOutlineCog />, color: 'bg-slate-800' },
-    // { id: 'help', title: 'BANTUAN', desc: 'Panduan Sistem', icon: <HiOutlineChatAlt2 />, color: 'bg-cyan-700' },
-  ];
 
   return (
     <>
@@ -45,7 +20,7 @@ export default function Dashboard() {
 
         {/* Grid Menu */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 w-full max-w-[95%] z-10">
-          {menus.map((menu) => (
+          {menus_cashier.map((menu: any) => (
             <button
               key={menu.id}
               className={`
@@ -61,7 +36,12 @@ export default function Dashboard() {
 
               {/* Icon Container */}
               <div className="mb-5 p-4 bg-black/20 rounded-2xl group-hover:bg-white group-hover:text-slate-900 transition-all duration-300 text-5xl text-white">
-                {menu.icon}
+                {/* {menu.icon} */}
+                <IconRenderer
+                  lib='hi'
+                  name={menu?.icon}
+                  size={35}
+                />
               </div>
 
               <div className="text-center z-10">
