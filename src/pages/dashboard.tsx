@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import Logout from '../common/components/button/logout';
 import Header from '../common/components/header';
-import { useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../store/themeStore';
 import { IconRenderer } from '../common/components/icons/IconRenderer';
 import { menus_cashier } from '../common/const';
 
 export default function Dashboard() {
-  const navigate = useNavigate();
   const { isDark } = useThemeStore();
 
   return (

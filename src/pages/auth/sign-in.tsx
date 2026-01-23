@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { HiOutlineLockClosed, HiOutlineUser, HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 import { useThemeStore } from '../../store/themeStore';
 import { name_apps, version_apps } from '../../common/const';
 import { useNavigate } from 'react-router-dom';
@@ -67,7 +66,7 @@ export default function LoginPage() {
                     ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Username</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-blue-500">
-                                    <HiOutlineUser size={20} />
+                                    <IconRenderer lib='hi' name='HiOutlineUser' size={20} />
                                 </div>
                                 <input
                                     type="text"
@@ -88,7 +87,7 @@ export default function LoginPage() {
                     ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Password</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-blue-500">
-                                    <HiOutlineLockClosed size={20} />
+                                    <IconRenderer lib='hi' name='HiOutlineLockClosed' size={20} />
                                 </div>
                                 <input
                                     type={showPassword ? "text" : "password"}
