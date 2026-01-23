@@ -1,14 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/dashboard';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppRouter } from './routes';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        {/* Tambahkan route lain di sini nanti */}
-        {/* <Route path="/pos" element={<POSPage />} /> */}
-      </Routes>
+      <AppRouter />
     </Router>
   );
 }
