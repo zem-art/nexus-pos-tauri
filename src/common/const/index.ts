@@ -1,5 +1,4 @@
 // /src/common/const/index.ts
-
 export const name_apps = "nexus"
 export const version_apps = 'V1.0.2'
 export const module_not_release = 'This module is being prepared for the next release. Please wait for updates from the engineering team.'
