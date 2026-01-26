@@ -1,32 +1,48 @@
-import js from "@eslint/js";
+import { FlatCompat } from "@eslint/eslintrc";
 import tseslint from "typescript-eslint";
-import unusedImports from "eslint-plugin-unused-imports";
-import globals from "globals";
+
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 export default tseslint.config(
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
   {
+    ignores: [".next"],
+  },
+  ...compat.extends("next/core-web-vitals"),
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    extends: [
+      ...tseslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+    ],
+    rules: {
+      "@typescript-eslint/array-type": "off",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/consistent-type-imports": [
+        "warn",
+        { prefer: "type-imports", fixStyle: "inline-type-imports" },
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/require-await": "off",
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        { checksVoidReturn: { attributes: false } },
+      ],
+    },
+  },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: true,
+    },
     languageOptions: {
-      // 2. Tambahkan globals browser di sini
-      globals: {
-        ...globals.browser,
+      parserOptions: {
+        projectService: true,
       },
     },
-    plugins: {
-      "unused-imports": unusedImports,
-    },
-    rules: {
-      "unused-imports/no-unused-imports": "error",
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "off",
-      "unused-imports/no-unused-vars": [
-        "warn",
-        { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" },
-      ],
-      "react/react-in-jsx-scope": "off",
-      // Matikan no-undef untuk TypeScript karena tsc sudah menanganinya dengan lebih baik
-      "no-undef": "off", 
-    },
-  }
+  },
 );
