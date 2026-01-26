@@ -1,4 +1,3 @@
-import React from 'react';
 import { name_apps, version_apps } from '../../const';
 import { useThemeStore } from '../../../store/themeStore';
 import { IconRenderer } from '../icons/IconRenderer';
