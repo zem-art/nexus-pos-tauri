@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDateTime } from '../../hooks/useDateTime';
 import { module_not_release, name_apps } from '../../const';
 import { useThemeStore } from '../../../store/themeStore';
