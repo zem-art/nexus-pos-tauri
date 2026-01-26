@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "nexus-pos-tauri",
+  "productName": "NexusPOS",
   "version": "0.1.0",
   "identifier": "com.zaid.nexus-pos-tauri",
   "build": {
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "nexus-pos-tauri",
+        "title": "NEXUS POS - Terminal Kasir",
         "width": 1200,
         "height": 750,
         "resizable": true,
