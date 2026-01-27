@@ -3,9 +3,11 @@ import Header from '../common/components/header';
 import { useThemeStore } from '../store/themeStore';
 import { IconRenderer } from '../common/components/icons/IconRenderer';
 import { menus_cashier } from '../common/const';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const { isDark } = useThemeStore();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -19,6 +21,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 w-full max-w-[95%] z-10">
           {menus_cashier.map((menu: any) => (
             <button
+              onClick={() => navigate(menu?.link)}
               key={menu.id}
               className={`
               ${menu.color} group relative overflow-hidden cursor-pointer rounded-[2rem] p-6 
