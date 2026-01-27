@@ -1,9 +1,9 @@
-import Logout from '../common/components/button/logout';
 import Header from '../common/components/header';
 import { useThemeStore } from '../store/themeStore';
 import { IconRenderer } from '../common/components/icons/IconRenderer';
 import { menus_cashier } from '../common/const';
 import { useNavigate } from 'react-router-dom';
+import EndShift from '../common/components/button/end_shift';
 
 export default function Dashboard() {
   const { isDark } = useThemeStore();
@@ -56,7 +56,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        <Logout />
+        <EndShift />
 
         {/* Background Decor: Kita sesuaikan warnanya agar masuk di kedua tema */}
         <div className={`
