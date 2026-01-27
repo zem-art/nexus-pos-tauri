@@ -95,6 +95,47 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Hardware & Printer Card */}
+                <div className={`${cardBase} ${glassEffect} md:col-span-3`}>
+                    <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-4">
+                            <IconRenderer lib="hi" name="HiOutlinePrinter" className="text-green-500" size={24} />
+                            <h3 className={`text-lg font-black uppercase italic ${isDark ? 'text-white' : 'text-slate-800'}`}>
+                                Printer & Perangkat
+                            </h3>
+                        </div>
+                        <button className="px-4 py-1 bg-green-500/10 text-green-500 text-[10px] font-black uppercase rounded-full border border-green-500/20 hover:bg-green-500 hover:text-white transition-all cursor-pointer">
+                            Cek Koneksi
+                        </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Status Printer Struk */}
+                        <div className={`p-4 rounded-2xl flex items-center justify-between ${isDark ? 'bg-black/20' : 'bg-slate-50 border border-slate-100'}`}>
+                            <div className="flex items-center gap-3">
+                                <IconRenderer lib="hi" name="HiOutlineTicket" size={20} className={isDark ? 'text-white/40' : 'text-slate-400'} />
+                                <span className={`text-xs font-bold uppercase ${isDark ? 'text-white/70' : 'text-slate-600'}`}>Printer Thermal (80mm)</span>
+                            </div>
+                            <span className="flex items-center gap-1.5 text-[10px] font-black text-red-500 uppercase">
+                                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                                Offline
+                            </span>
+                        </div>
+
+                        {/* Status Cash Drawer */}
+                        <div className={`p-4 rounded-2xl flex items-center justify-between ${isDark ? 'bg-black/20' : 'bg-slate-50 border border-slate-100'}`}>
+                            <div className="flex items-center gap-3">
+                                <IconRenderer lib="hi" name="HiOutlineDatabase" size={20} className={isDark ? 'text-white/40' : 'text-slate-400'} />
+                                <span className={`text-xs font-bold uppercase ${isDark ? 'text-white/70' : 'text-slate-600'}`}>Cash Drawer (RJ11)</span>
+                            </div>
+                            <span className="flex items-center gap-1.5 text-[10px] font-black text-green-500 uppercase">
+                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                Ready
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
