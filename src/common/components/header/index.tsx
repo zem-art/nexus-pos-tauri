@@ -2,13 +2,16 @@ import { useDateTime } from '../../hooks/useDateTime';
 import { module_not_release, name_apps } from '../../const';
 import { useThemeStore } from '../../../store/themeStore';
 import { IconRenderer } from '../icons/IconRenderer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const navigate = useNavigate()
   const { formattedTime } = useDateTime();
   const { isDark, toggleTheme } = useThemeStore();
 
   const handleProfile = () => {
-    alert(module_not_release)
+    // alert(module_not_release)
+    navigate('/settings')
   }
 
   return (
